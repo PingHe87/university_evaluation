@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course List</title>
+</head>
+<body>
+    <h1>Course List</h1>
+    <ul>
+        {% for course in courses %}
+            <li>{{ course.name }}</li>  <!-- 假设你的Course模型有一个name字段 -->
+        {% endfor %}
+    </ul>
+</body>
+</html>

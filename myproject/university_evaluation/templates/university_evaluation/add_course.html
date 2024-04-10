@@ -1,0 +1,11 @@
+<!-- university_evaluation/templates/university_evaluation/add_course.html -->
+{% extends 'base.html' %} <!-- 如果您有一个基础模板 -->
+
+{% block content %}
+<h2>Add Course</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

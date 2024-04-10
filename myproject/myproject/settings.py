@@ -12,6 +12,18 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'university_evaluation',  # 你的数据库名
+        'USER': 'root',    # 你的MySQL用户名
+        'PASSWORD': 'JF19960807hpSQL', # 你的MySQL密码
+        'HOST': 'localhost',              # 你的数据库服务器（本地为'localhost'）
+        'PORT': '3306',                   # MySQL的标准端口是3306
+    }
+}
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'university_evaluation', 
 ]
 
 MIDDLEWARE = [
@@ -52,7 +65,8 @@ MIDDLEWARE = [
 ROOT_URLCONF = "myproject.urls"
 
 TEMPLATES = [
-    {
+    { 
+        'APP_DIRS': True,
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [],
         "APP_DIRS": True,
@@ -73,12 +87,12 @@ WSGI_APPLICATION = "myproject.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+#DATABASES = {
+#    "default": {p
+ #       "ENGINE": "django.db.backends.sqlite3",
+  #      "NAME": BASE_DIR / "db.sqlite3",
+   # }
+#}
 
 
 # Password validation
