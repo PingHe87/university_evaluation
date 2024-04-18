@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect # type: ignore
-from .forms import CourseForm, DegreeForm, InstructorForm, LearningObjectiveForm, SectionForm, EvaluationForm, DegreeCourseForm, CourseObjectiveForm
+from .forms import CourseForm, DegreeForm, InstructorForm, InstructorQueryForm, LearningObjectiveForm, SectionForm, EvaluationForm, DegreeCourseForm, CourseObjectiveForm, SectionQueryForm
 from .models import Course, Degree, Instructor, LearningObjective, Section, Evaluation, DegreeCourse, CourseObjective
 
 def course_list(request):
@@ -54,3 +54,24 @@ def query_sections(request):
         form = SectionQueryForm()
 
     return render(request, 'university_evaluation/query.html', {'form': form})
+
+
+def instructor_sections(request):
+    if request.method == 'POST':
+        form = InstructorQueryForm(request.POST)
+        if form.is_valid():
+            year = form.cleaned_data['year']
+            semester = form.cleaned_data['semester']
+            instructor = form.cleaned_data['instructor']
+
+            sections_taught = Section.objects.filter(
+                instructor=instructor,
+                year=year,
+                semester=semester
+            )
+
+            return render(request, 'university_evaluation/instructor_sections_result.html', {'sections': sections_taught})
+    else:
+        form = InstructorQueryForm()
+
+    return render(request, 'university_evaluation/instructor_query_form.html', {'form': form})
