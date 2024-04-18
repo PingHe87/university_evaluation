@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand # type: ignore
 from university_evaluation.models import Course, Degree, Instructor, LearningObjective, Section, Evaluation, DegreeCourse, CourseObjective
 
 class Command(BaseCommand):

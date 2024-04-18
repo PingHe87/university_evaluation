@@ -1,5 +1,5 @@
 # university_evaluation/forms.py
-from django import forms
+from django import forms # type: ignore
 from .models import Course, Degree, Instructor, LearningObjective, Section, Evaluation, DegreeCourse, CourseObjective
 
 class CourseForm(forms.ModelForm):

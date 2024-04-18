@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path # type: ignore
 from .views import course_list,create_degree,home  # 确保导入了home视图
 
 urlpatterns = [

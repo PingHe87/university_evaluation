@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect # type: ignore
 from .forms import CourseForm, DegreeForm, InstructorForm, LearningObjectiveForm, SectionForm, EvaluationForm, DegreeCourseForm, CourseObjectiveForm
 from .models import Course, Degree, Instructor, LearningObjective, Section, Evaluation, DegreeCourse, CourseObjective
 
