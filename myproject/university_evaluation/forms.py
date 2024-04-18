@@ -41,3 +41,13 @@ class CourseObjectiveForm(forms.ModelForm):
     class Meta:
         model = CourseObjective
         fields = ['course', 'objective']
+
+class SectionQueryForm(forms.Form):
+    course = forms.ModelChoiceField(queryset=Course.objects.all(), required=True, label='Course')
+    year = forms.ChoiceField(choices=[(year, year) for year in range(2024, 2027)], required=True, label='Year')
+    semester = forms.ChoiceField(choices=Section.SEMESTER_CHOICES, required=True, label='Semester')
+
+    def __init__(self, *args, **kwargs):
+        super(SectionQueryForm, self).__init__(*args, **kwargs)
+        self.fields['course'].label_from_instance = lambda obj: "%s (%s)" % (obj.name, obj.course_number)
+

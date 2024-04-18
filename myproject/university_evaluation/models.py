@@ -30,7 +30,11 @@ class Section(models.Model):
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)
     section_number = models.IntegerField()
     enrollment_count = models.IntegerField()
-
+    SEMESTER_CHOICES = [
+        ('Spring', 'Spring'),
+        ('Summer', 'Summer'),
+        ('Fall', 'Fall'),
+    ]
     def __str__(self):
         return f"{self.course.name} - {self.semester} {self.year}"
 

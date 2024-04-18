@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Section Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Section Results</h1>
+    {% if sections %}
+        <table>
+            <tr>
+                <th>Course Name</th>
+                <th>Semester</th>
+                <th>Year</th>
+                <th>Instructor</th>
+                <th>Section Number</th>
+                <th>Enrollment Count</th>
+            </tr>
+            {% for section in sections %}
+            <tr>
+                <td>{{ section.course.name }}</td>
+                <td>{{ section.semester }}</td>
+                <td>{{ section.year }}</td>
+                <td>{{ section.instructor.name }}</td>
+                <td>{{ section.section_number }}</td>
+                <td>{{ section.enrollment_count }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No sections found for the specified course and semester range.</p>
+    {% endif %}
+</body>
+</html>
