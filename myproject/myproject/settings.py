@@ -17,7 +17,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'university_evaluation',  # 你的数据库名
         'USER': 'root',    # 你的MySQL用户名
-        'PASSWORD': 'JF19960807hpSQL', # 你的MySQL密码
+        'PASSWORD': 'xiaobencpf205', # 你的MySQL密码
         'HOST': 'localhost',              # 你的数据库服务器（本地为'localhost'）
         'PORT': '3306',                   # MySQL的标准端口是3306
     }
