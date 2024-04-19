@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect # type: ignore
-from .forms import CourseForm, DegreeForm, InstructorForm, InstructorQueryForm, LearningObjectiveForm, SectionForm, EvaluationForm, DegreeCourseForm, CourseObjectiveForm, SectionQueryForm
+from .forms import CourseForm, DegreeForm, DegreeQueryForm, InstructorForm, InstructorQueryForm, LearningObjectiveForm, SectionForm, EvaluationForm, DegreeCourseForm, CourseObjectiveForm, SectionQueryForm
 from .models import Course, Degree, Instructor, LearningObjective, Section, Evaluation, DegreeCourse, CourseObjective
 
 def course_list(request):
@@ -75,3 +75,32 @@ def instructor_sections(request):
         form = InstructorQueryForm()
 
     return render(request, 'university_evaluation/instructor_query_form.html', {'form': form})
+
+
+def degree_details(request):
+    if request.method == 'POST':
+        form = DegreeQueryForm(request.POST)
+        if form.is_valid():
+            degree = form.cleaned_data['degree']
+            # course related to the degree
+            courses = Course.objects.filter(degreecourse__degree=degree)
+            # section related to the degree
+            sections = Section.objects.filter(course__in=courses).order_by('year', 'semester')
+            # objective related to the degree
+            objectives = LearningObjective.objects.all()
+            objectives_courses = {}
+            for objective in objectives:
+                objective_courses = Course.objects.filter(courseobjective__objective=objective)
+                objectives_courses[objective] = objective_courses
+
+            return render(request, 'university_evaluation/degree_details_result.html', {
+                'degree': degree,
+                'courses': courses,
+                'sections': sections,
+                'objectives': objectives,
+                'objectives_courses': objectives_courses,
+            })
+    else:
+        form = DegreeQueryForm()
+
+    return render(request, 'university_evaluation/degree_query_form.html', {'form': form})

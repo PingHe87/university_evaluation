@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Degree Details Result</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        text-align: left;
+        padding: 8px;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Degree Details for {{ degree.name }}</h1>
+
+    <h2>Courses</h2>
+    {% if courses %}
+    <table>
+      <tr>
+        <th>Course Number</th>
+        <th>Course Name</th>
+        <th>Is Core</th>
+      </tr>
+      {% for course in courses %}
+      <tr>
+        <td>{{ course.course_number }}</td>
+        <td>{{ course.name }}</td>
+        <td>{{ course.degreecourse_set.first.is_core|yesno:"Yes,No" }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <p>No courses found for this degree.</p>
+    {% endif %}
+
+    <h2>Sections</h2>
+    {% if sections %}
+    <table>
+      <tr>
+        <th>Course</th>
+        <th>Year</th>
+        <th>Semester</th>
+        <th>Section Number</th>
+        <th>Enrollment Count</th>
+      </tr>
+      {% for section in sections %}
+      <tr>
+        <td>{{ section.course.name }}</td>
+        <td>{{ section.year }}</td>
+        <td>{{ section.semester }}</td>
+        <td>{{ section.section_number }}</td>
+        <td>{{ section.enrollment_count }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <p>No sections found for the courses of this degree.</p>
+    {% endif %}
+
+    <h2>Learning Objectives</h2>
+    {% if objectives %}
+    <table>
+      <tr>
+        <th>Code</th>
+        <th>Title</th>
+        <th>Description</th>
+      </tr>
+      {% for objective in objectives %}
+      <tr>
+        <td>{{ objective.code }}</td>
+        <td>{{ objective.title }}</td>
+        <td>{{ objective.description }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <p>No learning objectives found.</p>
+    {% endif %}
+
+    <h2>Courses by Objective</h2>
+    {% if objectives_courses %}
+    <table>
+      <tr>
+        <th>Learning Objective</th>
+        <th>Related Courses</th>
+      </tr>
+      {% for objective, courses in objectives_courses.items %}
+      <tr>
+        <td>{{ objective.title }}</td>
+        <td>
+          {% for course in courses %} {{ course.name }}{% if not forloop.last%},
+          {% endif %} {% endfor %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <p>No course-objective relations found.</p>
+    {% endif %}
+  </body>
+</html>

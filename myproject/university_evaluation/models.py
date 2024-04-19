@@ -6,10 +6,8 @@ class Degree(models.Model):
     name = models.CharField(max_length=255)
     level = models.CharField(max_length=50)
 
-    class Meta:
-        unique_together = (('name', 'level'),)
-        verbose_name_plural = "Degrees"
-
+    def __str__(self):
+        return self.name
 class Course(models.Model):
     course_number = models.CharField(max_length=255, primary_key=True)
     name = models.CharField(max_length=255)

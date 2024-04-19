@@ -61,3 +61,16 @@ class InstructorQueryForm(forms.Form):
         super(InstructorQueryForm, self).__init__(*args, **kwargs)
         self.fields['instructor'].label_from_instance = lambda obj: obj.name
 
+class DegreeQueryForm(forms.Form):
+    degree = forms.ModelChoiceField(
+        queryset=Degree.objects.all().order_by('name', 'level'),
+        required=True,
+        label='Degree',
+        empty_label="Select a degree" 
+    )
+
+    def __init__(self, *args, **kwargs):
+        super(DegreeQueryForm, self).__init__(*args, **kwargs)
+        # in the format of "Name (Level)"
+        self.fields['degree'].label_from_instance = lambda obj: f"{obj.name} ({obj.level})"
+
