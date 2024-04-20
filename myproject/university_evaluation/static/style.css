@@ -1,0 +1,62 @@
+/* Color Definitions */
+:root {
+  --color-light-blue: rgb(39, 55, 77);
+  --color-cream: rgb(82, 109, 130);
+  --color-peach: rgb(157, 178, 191);
+  --color-dark-brown: rgb(221, 230, 237);
+}
+
+/* General Background */
+body {
+  background-color: var(--color-dark-brown);
+}
+
+/* Header and Footer Styles */
+header,
+footer {
+  background-color: var(--color-dark-brown);
+  color: var(--color-peach);
+}
+
+/* Section Backgrounds */
+section {
+  background-color: var(--color-peach);
+  border: 2px solid var(--color-dark-brown);
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+/* Text Colors */
+h1 {
+  color: var(--color-dark-brown);
+}
+
+h2 {
+  color: var(--color-light-blue);
+}
+
+/* Link Styles */
+a {
+  color: var(--color-dark-brown);
+  transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+  color: var(--color-light-blue);
+  text-decoration: none;
+}
+
+/* List Group Items */
+.list-group-item {
+  background-color: transparent;
+  border: 1px solid var(--color-dark-brown);
+}
+
+/* Footer Text Centering and Styling */
+footer p {
+  text-align: center;
+  margin: 0;
+  padding: 10px;
+  font-weight: bold;
+}

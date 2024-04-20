@@ -32,7 +32,7 @@ def create_degree(request):
 
 def home(request):
     # Add logic to fetch data or perform any other operations
-    return render(request, 'home.html')
+    return render(request, 'university_evaluation/homepage.html')
 
 
 def query_sections(request):

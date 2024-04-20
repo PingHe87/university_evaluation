@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>University Program Evaluation System</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+  </head>
+  <body>
+    <header class="bg-dark text-white p-3 mb-3">
+      <h1 class="text-center">University Program Evaluation System</h1>
+    </header>
+    <main class="container">
+      <!-- Basic Information Section -->
+      <section>
+        <h2>Basic Information</h2>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <a href="{% url 'degree_details' %}">Degrees</a>
+          </li>
+          <li class="list-group-item">
+            <a href="{% url 'create_degree' %}">Add Degree</a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Evaluation Section -->
+      <section>
+        <h2>Evaluation</h2>
+        <p class="lead">
+          Section to handle evaluation details. Add links as needed.
+        </p>
+      </section>
+
+      <!-- Query Section -->
+      <section>
+        <h2>Queries</h2>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <a href="{% url 'degree_details' %}">Degree Query</a>
+          </li>
+          <li class="list-group-item">
+            <a href="{% url 'query' %}">Course Query</a>
+          </li>
+          <li class="list-group-item">
+            <a href="{% url 'instructor_sections' %}">Instructor Query</a>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="bg-dark text-white p-3 mt-4">
+      <p class="text-center">University Program Evaluation System © 2024</p>
+    </footer>
+  </body>
+</html>
